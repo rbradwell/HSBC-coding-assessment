@@ -1,0 +1,2 @@
+INSERT INTO user (id, title, firstname, surname, dob, created) values (1, 'Mr', 'Richard', 'Bradwell', '1975-08-01', NULL);
+INSERT INTO user (id, title, firstname, surname, dob, created) values (2, 'Mr', 'Alexander', 'Bradwell', '1975-08-01', NULL);
