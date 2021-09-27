@@ -1,5 +1,6 @@
 package com.hsbc.devassessment.repo;
 
+import com.hsbc.devassessment.model.SearchRequest;
 import com.hsbc.devassessment.model.User;
 import com.hsbc.devassessment.service.impl.UserService;
 import org.junit.Assert;
@@ -17,6 +18,8 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 public class UserServiceImplTests {
 
+    // TODO - convert these into mockmvc
+
     private static final Logger log = LoggerFactory.getLogger(UserServiceImplTests.class);
 
     @Autowired
@@ -24,7 +27,8 @@ public class UserServiceImplTests {
 
     @Test
     public void test_shouldReturnUserByFirstName() {
-        List<User> users = userService.findByFirstname("Richard");
+        SearchRequest request = SearchRequest.builder().firstname("Richard").build();
+        List<User> users = userService.search(request);
         Assert.assertFalse(users.isEmpty());
         User user = users.get(0);
         Assert.assertEquals("Bradwell", user.getSurname());
@@ -32,7 +36,8 @@ public class UserServiceImplTests {
 
     @Test
     public void test_shouldReturnUserBySurname() {
-        List<User> users = userService.findBySurname("Bradwell");
+        SearchRequest request = SearchRequest.builder().firstname("Bradwell").build();
+        List<User> users = userService.search(request);
         Assert.assertFalse(users.isEmpty());
         Assert.assertEquals(2, users.size());
     }
